@@ -1,0 +1,46 @@
+.demo-table {
+  width:auto;
+  padding-left: 10px;
+  margin-left: 20px;
+  /* min-width: none;  */
+}
+
+.demo-button-container {
+  padding: 20px;
+  margin-right: 20px;
+  /* min-width: none; */
+
+}
+
+.demo-button + .demo-button {
+  margin-left: 20px;
+  margin-right: 20px;
+  /* min-width: none; */
+
+}
+.mdc-data-table__table{
+    min-width: min-content!important;
+}
+
+/* table.component.css */
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Optional: Set a specific height if needed */
+
+  }
+  
+  .mat-elevation-z8 {
+    /* Optional: Add styles for the table elevation */
+    
+    margin-left: 20px;
+    margin-top: 20px;
+    width:97%;
+  }
+  
+
+  .mat-mdc-table .mat-mdc-header-cell{
+    text-align: center;
+  }
