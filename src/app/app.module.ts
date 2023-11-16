@@ -13,7 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { CurrencyPipe } from './currency.pipe';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import {MatCardModule} from '@angular/material/card';
+import { EmailValidator } from './edit-customer/my-form-definition';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HomeComponent,
     AddCustomerComponent,
     EditCustomerComponent,
-    CurrencyPipe
+    CurrencyPipe,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    FormlyModule.forRoot({validators: [
+      { name: 'Email', validation: EmailValidator },
+    ]}),
+    FormlyMaterialModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

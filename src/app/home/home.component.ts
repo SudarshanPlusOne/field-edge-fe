@@ -3,6 +3,7 @@ import {MatTable, MatTableDataSource, MatTableDataSourcePaginator, MatTableModul
 import {MatButtonModule} from '@angular/material/button';
 import { CustomerService } from '../customer.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 export interface Customer {
   id: string;
@@ -54,7 +55,7 @@ export class HomeComponent {
   @ViewChild(MatTable) table: MatTable<Customer> | any;
 
 
-constructor(private service: CustomerService){
+constructor(private service: CustomerService,private router:Router){
 
 }
 ngOnInit(){
@@ -74,8 +75,11 @@ ngAfterViewInit() {
     // this.dataSource1.push(ELEMENT_DATA[randomElementIndex]);
     this.table.renderRows();
   }
-  editData(element: any){
- alert(element);
+  editData(element: Customer){
+    
+console.log(element.balance);
+
+this.router.navigate(['/edit'],{queryParams:{ customer: JSON.stringify(element) } ,queryParamsHandling:'merge'});
   }
 
   onButtonClick(row: Customer) {
