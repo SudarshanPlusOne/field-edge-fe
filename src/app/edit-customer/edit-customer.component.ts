@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../home/home.component';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { MY_FORM_FIELDS } from './my-form-definition';
+import { CustomerService } from '../customer.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -40,9 +41,13 @@ export class EditCustomerComponent {
 // }
   
 
-  constructor(private activatedRoute: ActivatedRoute){
+  constructor(private activatedRoute: ActivatedRoute,private service:CustomerService,private router:Router){
     this.activatedRoute.queryParams.subscribe((params: any) => { 
+      if(params.customer == null || undefined){
+        this.router.navigateByUrl('');
+      }
       this.customer = JSON.parse(JSON.stringify(params.customer));
+      
       console.log(this.customer);
       this.formFields = this.updateFormFields(JSON.parse(params.customer));
       this.updateFormModel(JSON.parse(params.customer)); // Update formModel directly
@@ -73,8 +78,18 @@ export class EditCustomerComponent {
 
   onSubmit() {
     console.log(this.form.valid);
-    if (this.formModel) {
-      console.log('Form submitted with:', this.formModel);
+    if (this.form.valid) {
+      // console.log('Form submitted with:', this.formModel);
+
+      this.service.editCustomer(this.formModel).subscribe((x:any)=>{
+        console.log(x);
+
+        if(x.isSuccessStatusCode==true && x.statusCode>=202){
+          
+        this.router.navigateByUrl('');
+            }
+      })
+
       // You can perform further actions here
     } else {
       console.error('Form is invalid');

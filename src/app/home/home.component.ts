@@ -70,11 +70,14 @@ ngOnInit(){
 }
 ngAfterViewInit() {
 }
-  addData() {
-    // const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    // this.dataSource1.push(ELEMENT_DATA[randomElementIndex]);
-    this.table.renderRows();
-  }
+
+addCustomer(){
+  this.router.navigateByUrl('/add?new');
+}
+
+  // addData() {
+  //   this.table.renderRows();
+  // }
   editData(element: Customer){
     
 console.log(element.balance);
@@ -84,13 +87,29 @@ this.router.navigate(['/edit'],{queryParams:{ customer: JSON.stringify(element) 
 
   onButtonClick(row: Customer) {
     // Handle button click for the specific row
-    console.log('Button clicked for row:', row);
+    var result = confirm("Want to delete?");
+
+if (result) {
+  this.service.deleteCustomer(row.id).subscribe((x:any)=>{
+    
+    if(x.isSuccessStatusCode==true && x.statusCode>=204){
+      
+  window.location.href='';
+    }
+    else{
+
+
+      alert("Something went wrong");
+    }
+  });   
+}
+    // console.log('Button clicked for row:', row);
     // Add your custom logic here
   }
-  removeData() {
-    this.dataSource.pop();
-    this.table.renderRows();
-  }
+  // removeData() {
+  //   this.dataSource.pop();
+  //   this.table.renderRows();
+  // }
 }
 
 

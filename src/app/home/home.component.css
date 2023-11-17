@@ -1,14 +1,14 @@
-.demo-table {
+/* .demo-table {
   width:auto;
   padding-left: 10px;
   margin-left: 20px;
   /* min-width: none;  */
-}
+/* }
 
 .demo-button-container {
   padding: 20px;
   margin-right: 20px;
-  /* min-width: none; */
+  min-width: none;
 
 }
 
@@ -17,7 +17,7 @@
   margin-right: 20px;
   /* min-width: none; */
 
-}
+/* } */
 .mdc-data-table__table{
     min-width: min-content!important;
 }
@@ -44,3 +44,6 @@
   .mat-mdc-table .mat-mdc-header-cell{
     text-align: center;
   }
+
+
+  

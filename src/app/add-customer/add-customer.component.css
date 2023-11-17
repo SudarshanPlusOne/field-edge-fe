@@ -1,0 +1,4 @@
+
+.mat-mdc-card-content>:last-child:not(.mat-mdc-card-footer){
+    text-align: center!important;
+}

@@ -42,18 +42,27 @@ export const MY_FORM_FIELDS: FormlyFieldConfig[] = [
   },
   {
     key: 'gender',
-    type: 'input',
+    type: 'select',
     templateOptions: {
-      label: 'Last Name',
-      required: false
+      label: 'Gender',
+      required: true,
+      options: [
+        { label: 'Male', value: 'm' },
+        { label: 'Female', value: 'f' },
+        { label: 'Others', value: 'o' },
+      ],
     },
   },
   {
     key: 'currency',
-    type: 'input',
+    type: 'select',
     templateOptions: {
       label: 'Currency',
       required: false,
+      options: [
+        { label: 'US', value: 'USA' },
+        { label: 'INR', value: 'INR' },
+      ],
     },
   },
   {
@@ -62,6 +71,7 @@ export const MY_FORM_FIELDS: FormlyFieldConfig[] = [
     templateOptions: {
       label: 'Balance',
       required: true,
+      type:'number'
     },
   },
   {
@@ -70,6 +80,8 @@ export const MY_FORM_FIELDS: FormlyFieldConfig[] = [
     templateOptions: {
       label: 'Country Code',
       required: true,
+      pattern: '^[0-9]*[!@#$%^&*()_+,\-./:;<=>?@[\\\]_`{|}~][0-9]*$',
+      maxLength: 4
     },
   },
   {
@@ -78,6 +90,11 @@ export const MY_FORM_FIELDS: FormlyFieldConfig[] = [
     templateOptions: {
       label: 'Phone Number',
       required: true,
+      pattern:'/^(\+\d{1,3}[- ]?)?\d{10}$/',
+      min:1111111111,
+      max:9999999999,
+      minLength: 10,
+      maxLength:10
     },
   },
   
